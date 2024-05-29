@@ -1,0 +1,47 @@
+{
+    "os": "Windows-11-10.0.22631-SP0",
+    "python": "3.12.3",
+    "heartbeatAt": "2024-05-27T08:16:42.139020",
+    "startedAt": "2024-05-27T08:16:40.713645",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "Adamata-ML/trash_classification.ipynb",
+    "codePathLocal": null,
+    "root": "I:\\MyCode",
+    "host": "DESKTOP-3JENJCO",
+    "username": "Asus",
+    "executable": "C:\\Users\\Asus\\AppData\\Local\\JetBrains\\PyCharm2024.1\\demo\\PyCharmLearningProject\\venv\\Scripts\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2592.0,
+        "min": 0.0,
+        "max": 2592.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2592.0,
+            "min": 0.0,
+            "max": 2592.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 389.64843368530273,
+            "used": 96.23377227783203
+        }
+    },
+    "gpu": "GeForce GTX 950M",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "GeForce GTX 950M",
+            "memory_total": 2147483648
+        }
+    ],
+    "memory": {
+        "total": 19.895282745361328
+    }
+}
