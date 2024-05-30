@@ -36,7 +36,6 @@ jobs:
 
     - name: Save Model to LFS
       run: |
-        git lfs track "*.keras"
         git add .gitattributes
         git add trash_classification_model.keras
         git commit -m "Add trash_classification_model.keras to Git LFS"
