@@ -1,0 +1,61 @@
+name: Model Training
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+        pip install --upgrade pip
+        pip install tensorflow numpy pandas matplotlib seaborn scikit-learn Pillow wandb jupyter
+
+    - name: Download and extract dataset
+      run: |
+        mkdir -p dataset
+        curl -L -o dataset/dataset.zip https://example.com/path/to/dataset.zip
+        unzip dataset/dataset.zip -d dataset
+
+    - name: Run Jupyter Notebook
+      run: |
+        jupyter nbconvert --to notebook --execute trash_classification.ipynb --output executed_notebook.ipynb
+
+    - name: Save Model
+      run: |
+        mkdir -p $HOME/model
+        cp trash_classification_model.keras $HOME/model
+
+    - name: Log in to Weights & Biases
+      env:
+        WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+      run: |
+        wandb login $WANDB_API_KEY
+
+    - name: Upload Model to Weights & Biases
+      run: |
+        wandb.init(project="trash-classification")
+        wandb.config.update({
+          "epochs": 10,
+          "batch_size": 32,
+          "learning_rate": 0.001
+        })
+        wandb.log({"accuracy": test_acc, "loss": test_loss})
+        wandb.save('trash_classification_model.keras')
+
+    - name: Upload Model to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: model
+        path: $HOME/model
