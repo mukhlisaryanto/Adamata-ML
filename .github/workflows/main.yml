@@ -22,11 +22,6 @@ jobs:
         pip install --upgrade pip
         pip install tensorflow numpy pandas matplotlib seaborn scikit-learn Pillow wandb jupyter
 
-    - name: Download and extract dataset
-      run: |
-        mkdir -p dataset
-        curl -L -o dataset/dataset.zip https://example.com/path/to/dataset.zip
-        unzip dataset/dataset.zip -d dataset
 
     - name: Run Jupyter Notebook
       run: |
