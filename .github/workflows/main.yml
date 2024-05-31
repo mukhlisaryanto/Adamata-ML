@@ -39,11 +39,13 @@ jobs:
         jupyter nbconvert --to notebook --execute trash_classification.ipynb --output executed_notebook.ipynb
 
     - name: Save Model to LFS
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         git add .gitattributes
         git add trash_classification_model.keras
         git commit -m "Add trash_classification_model.keras to Git LFS"
-        git push origin main
+        git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/mukhlisaryanto/Adamata-ML.git
 
     - name: Upload Model to GitHub
       uses: actions/upload-artifact@v2
